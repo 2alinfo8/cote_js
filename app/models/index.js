@@ -26,6 +26,7 @@ db.sequelize = sequelize;
 
 db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
+db.demande = require("../models/demande-accouplement.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",
@@ -37,7 +38,14 @@ db.user.belongsToMany(db.role, {
   foreignKey: "userId",
   otherKey: "roleId"
 });
-
+// db.demande.belongsTo(db.user,{
+//     targetKey: "username",
+//     foreignKey:"from"
+// });
+// db.demande.belongsTo(db.user,{
+//     targetKey: "username",
+//     foreignKey:"to"
+// });
 db.ROLES = ["user", "veto"];
 
 module.exports = db;
