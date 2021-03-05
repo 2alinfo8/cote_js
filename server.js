@@ -30,13 +30,14 @@ db.sequelize.sync()
 require('./app/routes/auth.routes')(app);
 require('./app/routes/user.routes')(app);
 require('./app/routes/demande.routes')(app);
+require('./app/routes/perdus.routes')(app);
 
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Zanimaux application." });
 });
 
-/*function initial() {
+/* function initial() {
     Role.create({
       id: 1,
       name: "user"
@@ -51,7 +52,8 @@ app.get("/", (req, res) => {
       id: 3,
       name: "user_veto"
     });
-  }*/
+  }
+*/
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
