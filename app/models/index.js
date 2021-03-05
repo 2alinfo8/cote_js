@@ -28,6 +28,8 @@ db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 db.demande = require("../models/demande-accouplement.model.js")(sequelize, Sequelize);
 db.perdus = require("../models/perdus.model.js")(sequelize, Sequelize);
+db.consultation = require("../models/consultation.model.js")(sequelize, Sequelize);
+db.accessoire = require("../models/accessoire.model.js")(sequelize, Sequelize);
 
 db.role.belongsToMany(db.user, {
   through: "user_roles",
@@ -39,6 +41,29 @@ db.user.belongsToMany(db.role, {
   foreignKey: "userId",
   otherKey: "roleId"
 });
+
+db.consultation.belongsTo(db.user,{
+    targetKey: "id",
+    foreignKey:"patient"
+});
+
+db.consultation.belongsTo(db.user,{
+  targetKey: "id",
+  foreignKey:"vet"
+});
+
+// db.user.belongsToMany(db.role, {
+//   through: "user_roles",
+//   foreignKey: "userId",
+//   otherKey: "roleId"
+// });
+
+// db.consultation.HasOne(db.user,{
+//     foreignKey: "patientId"
+// })
+// db.consultation.HasOne(db.user,{
+//   foreignKey: "vetId"
+// })
 // db.demande.belongsTo(db.user,{
 //     targetKey: "username",
 //     foreignKey:"from"
