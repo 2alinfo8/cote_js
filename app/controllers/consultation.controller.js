@@ -43,7 +43,7 @@ exports.updateConsultation = (req, res) => {
 exports.deleteConsultation = (req, res) => {
     // Save request to Database
     consultation.destroy({where :{
-            id:req.body.id,
+            id:req.query.id,
         }})
         .then(result => {
             res.status(204).send({ message: "Request was deleted successfully!" });
@@ -68,43 +68,4 @@ exports.findAllConsultation = (req, res) => {
             res.status(400).send({ message: err.message });
         });
 };
-// exports.findAllDemandeByLocation = (req, res) => {
-//     demande.findAll({
-//         where: {
-//             location: req.query.location
-//         }
-//     })
-//         .then(demandes => {
-//             if (!demandes) {
-//                 return res.status(404).send({ message: "No opportunity found !" });
-//             }
-//             else{
-//                 res.status(200).send({
-//                     demandes
-//                 });
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).send({ message: err.message });
-//         });
-// };
-// exports.findAllDemandeByType = (req, res) => {
-//     demande.findAll({
-//         where: {
-//             animal: req.query.type
-//         }
-//     })
-//         .then(demandes => {
-//             if (!demandes) {
-//                 return res.status(404).send({ message: "No opportunity found !" });
-//             }
-//             else{
-//                 res.status(200).send({
-//                     demandes
-//                 });
-//             }
-//         })
-//         .catch(err => {
-//             res.status(500).send({ message: err.message });
-//         });
-// };
+
