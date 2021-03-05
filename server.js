@@ -17,14 +17,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("./app/models/");
-//const Role = db.role;
+const Role = db.role;
 
-db.sequelize.sync()
+//db.sequelize.sync()
 // force: true will drop the table if it already exists
-// db.sequelize.sync({force: true}).then(() => {
-//   console.log('Drop and Resync Database with { force: true }');
-//   initial();
-// });
+db.sequelize.sync({force: true}).then(() => {
+  initial();
+});
 
 // routes
 require('./app/routes/auth.routes')(app);
@@ -37,7 +36,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Zanimaux application." });
 });
 
-/*function initial() {
+function initial() {
     Role.create({
       id: 1,
       name: "user"
@@ -52,7 +51,7 @@ app.get("/", (req, res) => {
       id: 3,
       name: "user_veto"
     });
-  }*/
+  }
 // set port, listen for requests
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
